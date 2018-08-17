@@ -5,7 +5,9 @@ visualize(testData);
 
 function visualize(myData){
   const w = 500;
-  const h = 100;
+  const h = 300;
+  const barMax = 200;
+  const dataMax = Math.max(...myData);
   
   const svg = d3.select('body')
     .append('svg')
@@ -17,7 +19,8 @@ function visualize(myData){
     .enter()
     .append('rect')
     .attr('x', (d, i) => i * (w / myData.length))
-    .attr('y', 0)
+    .attr('y', d => barMax - (barMax / dataMax) * d)
     .attr('width', 20)
-    .attr('height', 100);
+    .attr('height', d => (barMax / dataMax) * d)
+    .attr('fill', 'teal');
 }
