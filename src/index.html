@@ -5,6 +5,18 @@
     <title>d3</title>
   </head>
   <body>
-    <a href="/ch1.html">go to chapter 1</a>
+    <div id="chapters"></div>
+    <script>
+      const availChapters = ['1','2','4'];
+      const divMenu = document.getElementById('chapters');
+      for(elChapter of availChapters) {
+        const alink = document.createElement('a');
+        alink.innerHTML = `go to chapter(${elChapter})`;
+        alink.href = `/d3.html?chapter=${elChapter}`;
+        divMenu.appendChild(alink);
+        const br = document.createElement('br');
+        divMenu.appendChild(br);
+      }
+    </script>
   </body>
 </html>
