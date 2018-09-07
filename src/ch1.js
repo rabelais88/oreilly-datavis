@@ -8,16 +8,16 @@ const rowConverter = function(d) {
 }
 
 // d3 v4 way - CONVERTER DOESN'T WORK THIS WAY
-d3.csv('food.csv', function(data) {
+d3.csv('/csv/food.csv', function(data) {
   console.table(data);
 });
 
-d3.csv('food.csv', rowConverter)
+d3.csv('/csv/food.csv', rowConverter)
   .then(data => {
     console.table(data);
   })
 
-d3.json('test.json')
+d3.json('/json/test.json')
   .then(data => {
     console.table(data)
   });

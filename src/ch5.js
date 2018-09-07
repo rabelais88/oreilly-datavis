@@ -6,7 +6,7 @@ const rowConverter = (d) => { return {
   Amount: parseInt(d.Amount)
 }};
 
-d3.csv('times.csv', rowConverter).then(scaleTime)
+d3.csv('/csv/times.csv', rowConverter).then(scaleTime)
 
 function scaleTime(timesData) {
   console.table(timesData)
@@ -28,6 +28,17 @@ function scaleTime(timesData) {
     .attr('width', svgWidth)
     .attr('height', svgHeight);
   
+  // adding ticks
+  const xTicks = d3.axisBottom()
+    .scale(xScale)
+    .ticks(5);
+  
+  const yTickFormat = d3.format('r');
+  const yTicks = d3.axisRight()
+    .scale(yScale)
+    .ticks(5)
+    .tickFormat(yTickFormat);
+  
   const circles = svg.selectAll('g')
     .data(timesData)
     .enter()
@@ -48,4 +59,11 @@ function scaleTime(timesData) {
     .attr('x', d => xScale(d.Date))
     .attr('y', d => yScale(d.Amount))
 
+  svg.append('g')
+  .attr('class', 'axis')
+  .call(yTicks);
+
+  svg.append('g')
+    .attr('class', 'axis')
+    .call(xTicks);
 }

@@ -7,8 +7,7 @@
   <body>
     <div id="chapters"></div>
     <script>
-      const maxChapter = 5;
-      const availChapters = new Array(maxChapter).fill(0).map((el,idx) => idx + 1);
+      const availChapters = [1,2,3,4,5,11];
       const divMenu = document.getElementById('chapters');
       for(elChapter of availChapters) {
         const alink = document.createElement('a');
